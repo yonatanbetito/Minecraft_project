@@ -1,0 +1,10 @@
+body {
+    width: 5000px;
+    height: 1500px;
+}
+
+#contiener {
+    display: grid;
+    grid-template-columns: auto-fill 50px;
+    grid-template-rows: auto-fill 50px;
+}
