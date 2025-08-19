@@ -3,8 +3,59 @@ body {
     height: 1500px;
 }
 
+header {
+}
+
+.button {
+}
+
+.button button {
+}
+
 #contiener {
     display: grid;
     grid-template-columns: auto-fill 50px;
     grid-template-rows: auto-fill 50px;
+}
+
+aside {
+}
+
+.tools {
+}
+
+.tool {
+}
+
+#axe {
+}
+
+#pickaxe {
+}
+
+#shovel {
+}
+
+#shers {
+}
+
+.stacks {
+}
+
+.material {
+}
+
+#oak-leaves {
+}
+
+#oak-log {
+}
+
+#grass {
+}
+
+#dirt {
+}
+
+#stone {
 }
