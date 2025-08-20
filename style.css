@@ -1,6 +1,5 @@
 body {
-    width: 4800px;
-    height: 1440px;
+    
 }
 
 header {
@@ -11,11 +10,29 @@ header {
 
 .button button {
 }
+.cell{
+    background-color: aqua;
+    
+}
+.grass{
+    background-color: green;
+}
+.dirt{
+    background-color: brown;
+}
+.stone{
+    background-color: gray;
+}
+.bedrock{
+    background-color: black;
+}
 
 #contiener {
+    width: 4800px;
+    height: 1440px;
     display: grid;
-    grid-template-columns: auto-fill 48px;
-    grid-template-rows: auto-fill 48px;
+    grid-template-columns: repeat(auto-fill, 48px);
+    grid-template-rows: repeat(auto-fill, 48px);
 }
 
 aside {
