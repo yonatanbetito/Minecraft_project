@@ -1,4 +1,22 @@
-const contiener = document.getElementById("contiener");
+// >>> Elemntes
+const contiener = document.getElementById("contiener"); // contiener = grid
+
+const cells = document.getElementsByClassName("cell"); // all the cell in the grid
+
+// material
+const oakleaves = document.getElementsByClassName("oak-leaves"); // leaves of the tree
+const oaklog = document.getElementsByClassName("oak-log"); // root of the tree
+const grass = document.getElementsByClassName("grass");
+const dirt = document.getElementsByClassName("dirt");
+const stone = document.getElementsByClassName("stone");
+
+// tools
+const axe = document.getElementsById("axe"); // for oak-log
+const shears = document.getElementsById("shears"); // for oak-leaves
+const shovel = document.getElementsById("shovel"); // for grass & dirt
+const pickaxe = document.getElementsById("pickaxe"); // for stone
+// End Element <<<
+
 let count = 0
 for (let index = 0; index < 100 * 30; index++) {
   const div = document.createElement("div");
@@ -17,20 +35,27 @@ for (let index = 0; index < 100 * 30; index++) {
   
 }
 
-// material
-const cell = document.getElementsByClassName("cell");
-const grass = document.getElementsByClassName("grass");
-const dirt = document.getElementsByClassName("dirt");
-const stone = document.getElementsByClassName("stone");
 
-function onClick(tool) {
+function toolValidation(cell, tool) {
   if (tool === "axe") {
-    
+    cell.classList.remove("oak-log");
+  }
+  if (tool === "shears") {
+    cell.classList.remove("oak-leaves");
+  }
+  if (tool === "shovel") {
+    cell.classList.remove("grass");
+    cell.classList.remove("dirt");
+  }
+  if (tool === "pickaxe") {
+    cell.classList.remove("stone");
   }
 }
-const numbers = [];
 
-for (let i = 0; i < 4; i++) {
-  const num = Math.floor(Math.random() * (1099 - 1006 + 1)) + 1006;
-  numbers.push(num);
-}
+function removeMaterial() {
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].addEventListener("click", function () {
+      toolValidation(cells[i], "pickaxe");
+    });
+  }
+} 
