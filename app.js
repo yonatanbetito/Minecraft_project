@@ -17,6 +17,20 @@ const shovel = document.getElementById("shovel"); // for grass & dirt
 const pickaxe = document.getElementById("pickaxe"); // for stone
 // End Element <<<
 
+const tools = document.querySelectorAll(".tool");
+let selectedTool = null; 
+
+tools.forEach(tool => {
+  tool.addEventListener("click", (e) => {
+    selectedTool = tool.id;
+    console.log("Selected tool:", selectedTool);
+    
+    tools.forEach(t => t.style.borderColor = "#666"); // הסרת הדגשה מכל הכלים
+    tool.style.borderColor = "yellow"; // להדגיש הכלי שנבחר
+  });
+});
+
+
 let count = 0
 for (let index = 0; index < 100 * 30; index++) {
   const div = document.createElement("div");
@@ -93,3 +107,13 @@ removeMaterial();
 //     })
 //   }
 // }
+
+
+const numbers = [];
+
+for (let i = 0; i < 4; i++) {
+  const num = Math.floor(Math.random() * (1099 - 1006 + 1)) + 1006;
+  numbers.push(num);
+}
+
+// console.log(numbers);
