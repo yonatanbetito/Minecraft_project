@@ -11,20 +11,24 @@ header {
 .button button {
 }
 .cell{
-    background-color: aqua;
+    background-color: #87CEEB
     
 }
 .grass{
-    background-color: green;
+    background-image: url(/utils/grass.webp);
+    background-size: cover;
 }
 .dirt{
-    background-color: brown;
+    background-image: url(/utils/dirt.webp);
+    background-size: cover;
 }
 .stone{
-    background-color: gray;
+    background-image: url(/utils/stone.webp);
+    background-size: cover;
 }
 .bedrock{
-    background-color: black;
+    background-image: url(/utils/bedrock.webp);
+    background-size: cover;
 }
 
 #contiener {
