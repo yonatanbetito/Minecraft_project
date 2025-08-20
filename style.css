@@ -66,13 +66,27 @@ aside {
 }
 
 .stacks {
+    position: fixed;
+    top: 200px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .material {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    background-size: cover;
+    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
 }
 
 #oak-leaves {
-    background-color: bisque;
 }
 
 #oak-log {
