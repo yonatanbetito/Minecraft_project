@@ -13,3 +13,15 @@ for (let index = 0; index < 100 * 30; index++) {
     div.classList.add("bedrock");
   }
 }
+
+// material
+const cell = document.getElementsByClassName("cell");
+const grass = document.getElementsByClassName("grass");
+const dirt = document.getElementsByClassName("dirt");
+const stone = document.getElementsByClassName("stone");
+
+function onClick(tool) {
+  if (tool === "axe") {
+    
+  }
+}
