@@ -107,7 +107,7 @@ aside {
 
 .stacks {
     position: fixed;
-    top: 200px;
+    top: 300px;
     left: 20px;
     display: flex;
     flex-direction: column;
