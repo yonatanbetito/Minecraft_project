@@ -16,9 +16,14 @@ header {
     cursor: pointer;
 }
 .cell{
+
     background-color: #87CEEB
-    
+
 }
+.cell:hover{
+border: 1px solid black;
+}
+
 .grass{
     background-image: url(/utils/grass.webp);
     background-size: cover;
@@ -72,6 +77,7 @@ aside {
 }
 
 #oak-leaves {
+    background-color: bisque;
 }
 
 #oak-log {
