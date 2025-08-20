@@ -48,10 +48,37 @@ aside {
 }
 
 .tools {
+    position: fixed;
+    top: 50px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .tool {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
 }
+
+.tool img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+/* כשהכלי נבחר */
+.tool.active {
+    border-color: yellow;
+    transform: scale(1.1);
+}
+
 
 #axe {
 }
