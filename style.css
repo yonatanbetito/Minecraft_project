@@ -6,9 +6,14 @@ header {
 }
 
 .button {
+    background-color: #87CEEB;
+    padding: 10px;
 }
 
 .button button {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 .cell{
     background-color: #87CEEB
