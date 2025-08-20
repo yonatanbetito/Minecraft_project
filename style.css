@@ -1,6 +1,6 @@
 body {
-    width: 5000px;
-    height: 1500px;
+    width: 4800px;
+    height: 1440px;
 }
 
 header {
@@ -14,8 +14,8 @@ header {
 
 #contiener {
     display: grid;
-    grid-template-columns: auto-fill 50px;
-    grid-template-rows: auto-fill 50px;
+    grid-template-columns: auto-fill 48px;
+    grid-template-rows: auto-fill 48px;
 }
 
 aside {
