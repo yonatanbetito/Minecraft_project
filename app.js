@@ -1,3 +1,17 @@
+
+const tools = document.querySelectorAll(".tool");
+let selectedTool = null; 
+
+tools.forEach(tool => {
+  tool.addEventListener("click", (e) => {
+    selectedTool = tool.id;
+    console.log("Selected tool:", selectedTool);
+    
+    tools.forEach(t => t.style.borderColor = "#666"); // הסרת הדגשה מכל הכלים
+    tool.style.borderColor = "yellow"; // להדגיש הכלי שנבחר
+  });
+});
+
 const contiener = document.getElementById("contiener");
 let count = 0
 for (let index = 0; index < 100 * 30; index++) {
@@ -27,3 +41,4 @@ for (let i = 0; i < 4; i++) {
 }
 
 // console.log(numbers);
+
