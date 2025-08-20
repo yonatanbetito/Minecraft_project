@@ -110,27 +110,27 @@ const stackMaterial = {
 }
 
 function toolValidation(cell, tool) {
-  if (tool === "axe") {
+  if (tool === "axe" && cell.classList.contains("oak-log")) {
     cell.classList.remove("oak-log");
     stackMaterial.oaklog ++;
-    oaklog.style.backgroundImage = "url(/utils/oak-leaves.webp)";
+    oaklog.style.backgroundImage = "url(/utils/oak-log.webp)";
   }
-  if (tool === "shears") {
+  if (tool === "shears" && cell.classList.contains("oak-leaves")) {
     cell.classList.remove("oak-leaves");
     stackMaterial.oakleaves++;
     grass.style.backgroundImage = "url(/utils/oak-leaves.webp)";
   }
-  if (tool === "shovel") {
+  if (tool === "shovel" && cell.classList.contains("grass")) {
     cell.classList.remove("grass");
     stackMaterial.grass++;
     grass.style.backgroundImage = "url(/utils/grass.webp)";
   }
-  if (tool === "shovel") {
+  if (tool === "shovel" && cell.classList.contains("dirt")) {
     cell.classList.remove("dirt");
     stackMaterial.dirt++;
     dirt.style.backgroundImage = "url(/utils/dirt.webp)";
   }
-  if (tool === "pickaxe") {
+  if (tool === "pickaxe" && cell.classList.contains("stone")) {
     cell.classList.remove("stone");
     stackMaterial.stone++;
     stone.style.backgroundImage = "url(/utils/stone.webp)";
@@ -140,7 +140,7 @@ function toolValidation(cell, tool) {
 function removeMaterial() {
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function () {
-      toolValidation(cells[i], "shovel");
+      toolValidation(cells[i], selectedTool);
     });
   }
 } 
