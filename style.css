@@ -1,6 +1,5 @@
 body {
-    width: 5000px;
-    height: 1500px;
+    
 }
 
 header {
@@ -11,11 +10,38 @@ header {
 
 .button button {
 }
+.cell{
+
+    background-color: #87CEEB
+
+}
+.cell:hover{
+border: 1px solid black;
+}
+
+.grass{
+    background-image: url(/utils/grass.webp);
+    background-size: cover;
+}
+.dirt{
+    background-image: url(/utils/dirt.webp);
+    background-size: cover;
+}
+.stone{
+    background-image: url(/utils/stone.webp);
+    background-size: cover;
+}
+.bedrock{
+    background-image: url(/utils/bedrock.webp);
+    background-size: cover;
+}
 
 #contiener {
+    width: 4800px;
+    height: 1440px;
     display: grid;
-    grid-template-columns: auto-fill 50px;
-    grid-template-rows: auto-fill 50px;
+    grid-template-columns: repeat(auto-fill, 48px);
+    grid-template-rows: repeat(auto-fill, 48px);
 }
 
 aside {
@@ -73,6 +99,7 @@ aside {
 }
 
 #oak-leaves {
+    background-color: bisque;
 }
 
 #oak-log {
