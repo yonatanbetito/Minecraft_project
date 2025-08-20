@@ -12,8 +12,11 @@ header {
 }
 .cell{
     background-color: aqua;
-    
 }
+.cell:hover{
+border: 1px solid black;
+}
+
 .grass{
     background-color: green;
 }
@@ -63,6 +66,7 @@ aside {
 }
 
 #oak-leaves {
+    background-color: bisque;
 }
 
 #oak-log {
