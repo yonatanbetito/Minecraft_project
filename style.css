@@ -1,83 +1,130 @@
 body {
-    
+  margin: 0;
 }
 
 header {
 }
+#homeP {
+  height: 100vh;
+  background-image: url(/utils/minecraft-background.jpg);
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.button {
+#button {
+  background-color: #87ceeb;
+  padding: 10px;
+}
+#homebuttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+.homebutton {
+  font-size: xx-large;
+  min-width: 350px;
+  height: 150px;
+}
+#logo {
+  min-width: 150px;
+  width: 900px;
+  height: 450px;
 }
 
 .button button {
+  background-color: #a0a0a0;
+  border: 2px solid #707070;
+  border-radius: 4px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0px 3px 1px #707070;
+  margin: 0.5rem 0;
 }
+
 .cell{
 
     background-color: #87CEEB
 
-
-}
-.cell:hover{
-border: 1px solid black;
 }
 
-.grass{
-    background-image: url(/utils/grass.webp);
-    background-size: cover;
+button:hover {
+  background-color: #b0b0b0;
+  color: white;
+
 }
-.dirt{
-    background-image: url(/utils/dirt.webp);
-    background-size: cover;
+.cell {
+  background-color: #87ceeb;
 }
-.stone{
-    background-image: url(/utils/stone.webp);
-    background-size: cover;
+.cell:hover {
+  border: 1px solid black;
 }
-.bedrock{
-    background-image: url(/utils/bedrock.webp);
-    background-size: cover;
+
+.grass {
+  background-image: url(/utils/grass.webp);
+  background-size: cover;
+}
+.dirt {
+  background-image: url(/utils/dirt.webp);
+  background-size: cover;
+}
+.stone {
+  background-image: url(/utils/stone.webp);
+  background-size: cover;
+}
+.bedrock {
+  background-image: url(/utils/bedrock.webp);
+  background-size: cover;
 }
 
 #contiener {
-    width: 4800px;
-    height: 1440px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 48px);
-    grid-template-rows: repeat(auto-fill, 48px);
+  width: 4800px;
+  height: 1440px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 48px);
+  grid-template-rows: repeat(auto-fill, 48px);
 }
 
 aside {
 }
 
 .tools {
-    position: fixed;
-    top: 50px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  position: fixed;
+  top: 50px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .tool {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
 }
 
 .tool img {
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
 }
 
 /* כשהכלי נבחר */
 .tool.active {
-    border-color: yellow;
-    transform: scale(1.1);
+  border-color: yellow;
+  transform: scale(1.1);
 }
 .tool-ghost {
   position: absolute;
@@ -90,7 +137,6 @@ aside {
   z-index: 1000;
   display: none;
 }
-
 
 
 #axe {
@@ -106,13 +152,27 @@ aside {
 }
 
 .stacks {
+    position: fixed;
+    top: 300px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .material {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    background-size: cover;
+    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
 }
 
 #oak-leaves {
-    background-color: bisque;
 }
 
 #oak-log {
