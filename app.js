@@ -4,82 +4,43 @@ const cells = document.getElementsByClassName("cell"); // all the cell in the gr
 
 
 // material
-const oakleaves = document.getElementById("oak-leaves"); // leaves of the tree
-const oaklog = document.getElementById("oak-log"); // root of the tree
-const grass = document.getElementById("grass");
-const dirt = document.getElementById("dirt");
-const stone = document.getElementById("stone");
+const materials = document.getElementsByClassName("materials");
 
 // tools
 const axe = document.getElementById("axe"); // for oak-log
 const shears = document.getElementById("shears"); // for oak-leaves
 const shovel = document.getElementById("shovel"); // for grass & dirt
 const pickaxe = document.getElementById("pickaxe"); // for stone
+
+const aside = document.querySelector("aside");
+
+const stack = document.querySelector(".stack");
+
+const tools = document.querySelectorAll(".tool");
+
+let mode = null;
+let selectedTool = null;
+let selectedMaterial = null;
+
+const divNumber = document.createElement("div");
+divNumber.classList.add("numbers");
+aside.appendChild(divNumber);
+
+const divlog = document.createElement("div");
+const divleaves = document.createElement("div");
+const divgrass = document.createElement("div");
+const divdirt = document.createElement("div");
+const divstone = document.createElement("div");
+
+const stackMaterial = {
+  oaklog: 0,
+  oakleaves: 0,
+  grass: 0,
+  dirt: 0,
+  stone: 0,
+};
 // End Element <<<
 
-// בחירת כל הכלים
-const tools = document.querySelectorAll(".tool");
-let selectedTool = null;
-let ghost = null;
-
-// יצירת ghost שמלווה את העכבר
-function createGhost() {
-  const div = document.createElement("div");
-  div.classList.add("tool-ghost");
-  document.body.appendChild(div);
-  return div;
-}
-
-// בחירת כלי
-function selectTool(tool) {
-  selectedTool = tool.id;
-  console.log("selectedTool:", selectedTool);
-  tools.forEach((t) => t.classList.remove("active"));
-  tool.classList.add("active"); // הדגשת הכלי שנבחר
-
-  const imgSrc = tool.querySelector("img").src;
-  document.body.style.cursor = `url(${imgSrc}) , auto`;
-
-  ghost.style.backgroundImage = `url(${imgSrc})`;
-  ghost.style.display = "block";
-}
-
-// הזזת ה-ghost עם העכבר
-function moveGhost(e) {
-  if (selectedTool) {
-    ghost.style.left = e.pageX + "px";
-    ghost.style.top = e.pageY + "px";
-  }
-}
-
-// מאזינים לכלים
-function setupToolListeners() {
-  tools.forEach((tool) => {
-    tool.addEventListener("click", () => selectTool(tool));
-  });
-}
-
-// מאזין להזזת עכבר
-function setupMouseMove() {
-  document.addEventListener("mousemove", moveGhost);
-}
-
-// התחלת הפונקציות
-function initTools() {
-  ghost = createGhost();
-  setupToolListeners();
-  setupMouseMove();
-}
-
-// קריאה להתחלה
-initTools();
-
-
-
-   
-
-
-let count = 0;
 
 for (let index = 0; index < 100 * 30; index++) {
   const div = document.createElement("div");
@@ -97,67 +58,132 @@ for (let index = 0; index < 100 * 30; index++) {
   contiener.appendChild(div);
 }
 
-const stackMaterial = {
-  oaklog: 0,
-  oakleaves: 0,
-  grass: 0,
-  dirt: 0,
-  stone: 0,
-};
+function toolType(tool) {
+  contiener.style.cursor = `url('/utils/cursor/${tool.id}.png') 16 16, auto`;
+}
+
+function selectTool() {
+  for (let i = 0; i < tools.length; i++) {
+    tools[i].addEventListener("click", function () {
+      toolType(tools[i]);
+      selectedTool = tools[i].id;
+      selectedMaterial = null;
+      mode = "tool";
+    });
+  }
+}
+
+selectTool();
+
+function addMaterialToStack(materialId) {
+  let divMaterial = stack.querySelector(`.${materialId}Stack`);
+  console.log(divMaterial);
+  
+  if (!divMaterial) {
+    divMaterial = document.createElement("div");
+    divMaterial.classList.add("materials", materialId + "Stack");
+    divMaterial.id = materialId;
+    divMaterial.style.backgroundImage = `url('/utils/${materialId}.webp')`;
+    console.log(divMaterial);
+    stack.appendChild(divMaterial);
+  }
+  
+  stackMaterial[materialId]++;
+  
+  checkStackAndActivate();
+}
 
 function toolValidation(cell, tool) {
   if (tool === "axe") {
-    cell.classList.remove("oak-log");
-    stackMaterial.oaklog++;
-    oaklog.style.backgroundImage = "url(/utils/oak-leaves.webp)";
+    addMaterialToStack("oaklog");
+    cell.classList.remove("oaklog");
+    divlog.textContent = stackMaterial.oaklog;
+    divNumber.appendChild(divlog);
   }
-  if (tool === "shears") {
-    cell.classList.remove("oak-leaves");
-    stackMaterial.oakleaves++;
-    grass.style.backgroundImage = "url(/utils/oak-leaves.webp)";
+  if (tool === "shears" && cell.classList.contains("oakleaves")) {
+    addMaterialToStack("oakleaves");
+    cell.classList.remove("oakleaves");
+    divleaves.textContent = stackMaterial.oakleaves;
+    divNumber.appendChild(divleaves);
   }
-  if (tool === "shovel") {
+  if (tool === "shovel" && cell.classList.contains("grass")) {
+    addMaterialToStack("grass");
     cell.classList.remove("grass");
-    stackMaterial.grass++;
-    grass.style.backgroundImage = "url(/utils/grass.webp)";
+    divgrass.textContent = stackMaterial.grass;
+    divNumber.appendChild(divgrass);
   }
-  if (tool === "shovel") {
+  if (tool === "shovel" && cell.classList.contains("dirt")) {
+    addMaterialToStack("dirt");
     cell.classList.remove("dirt");
-    stackMaterial.dirt++;
-    dirt.style.backgroundImage = "url(/utils/dirt.webp)";
+    divdirt.textContent = stackMaterial.dirt;
+    divNumber.appendChild(divdirt);
   }
-  if (tool === "pickaxe") {
+  if (tool === "pickaxe" && cell.classList.contains("stone")) {
+    addMaterialToStack("stone");
     cell.classList.remove("stone");
-    stackMaterial.stone++;
-    stone.style.backgroundImage = "url(/utils/stone.webp)";
+    divstone.textContent = stackMaterial.stone;
+    divNumber.appendChild(divstone);
   }
 }
 
 function removeMaterial() {
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function () {
-      toolValidation(cells[i], "shovel");
+      toolValidation(cells[i], selectedTool);
     });
   }
 }
 
 removeMaterial();
 
-// function selecetMaterial(cell) {
-//   const
-// }
+function materialsValidation(material) {
+  contiener.style.cursor = `url('/utils/cursor/${material.id}.jpg') 16 16, auto`;
+}
 
-// function createMaterial() {
-//   for (let i = 0; i < cells.length; i++) {
-//     cells[i].addEventListener("click", (element) => {
-//       element.classList.add("")
-//     })
-//   }
-// }
+function createMaterial(material) {
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].addEventListener("click", () => {
+      if (stackMaterial[material.id] > 0) {
+        cells[i].classList.add(material.id);
+        stackMaterial[material.id]--;
+        
+        const counter = document.getElementById(`${material.id}`);
+        if (counter) {
+          counter.textContent = stackMaterial[material.id];
+        }
+      }
+    });
+  }
+}
+
+function selectMaterial() {
+  for (let i = 0; i < materials.length; i++) {
+    materials[i].addEventListener("click", (e) => {
+      materialsValidation(materials[i]);
+      createMaterial(materials[i]);
+      selectedTool = null;
+      mode = "material";
+    });
+  }
+}
+
+function checkStackAndActivate() {
+  for (let key in stackMaterial) {
+    if (stackMaterial[key] > 0) {
+      selectMaterial();
+      break;
+    }
+  }
+}
 
 const numbers = [];
 const listId = [];
 const leastIndex = [];
+
+for (let i = 0; i < 4; i++) {
+  const num = Math.floor(Math.random() * (1099 - 1006 + 1)) + 1006;
+  numbers.push(num);
+}
 
 function addId(startBotonPart, endBotonPart, startTopPart, endTopPart) {
   for (let i = startBotonPart; i <= endBotonPart; i++) {
@@ -180,7 +206,7 @@ function craetTrunk(numThree) {
       rout.push(IndexTrunk);
       const pars = String(IndexTrunk);
       let trunk = document.getElementById(pars);
-      trunk.classList.add("trunk");
+      trunk.classList.add("oaklog");
     }
     leastIndex.push(rout[idTrunk]);
   }
@@ -206,7 +232,10 @@ function insertIdThree() {
   for (let idSell = 0; idSell <= listId.length; idSell++) {
     const parsLeaves = String(listId[idSell]);
     let leaves = document.getElementById(parsLeaves);
-    leaves.classList.add("leaves");
+    console.log(leaves);
+    if (leaves) {
+        leaves.classList.add("oakleaves");
+    }
   }
 }
 craetTrunk()
