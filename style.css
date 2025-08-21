@@ -3,7 +3,9 @@ body {
 }
 
 header {
+
 }
+
 #homeP {
   height: 100vh;
   background-image: url(/utils/minecraft-background.jpg);
@@ -49,14 +51,13 @@ header {
   margin: 0.5rem 0;
 }
 
-.cell{
-  background-color: #87CEEB
+.cell {
+  background-color: #87ceeb;
 }
 
 button:hover {
   background-color: #b0b0b0;
   color: white;
-
 }
 .cell {
   background-color: #87ceeb;
@@ -95,7 +96,7 @@ aside {
 
 .tools {
   position: fixed;
-  top: 50px;
+  top: 70px;
   left: 20px;
   display: flex;
   flex-direction: column;
@@ -119,24 +120,6 @@ aside {
   object-fit: contain;
 }
 
-/* כשהכלי נבחר */
-/* .tool.active {
-  border-color: yellow;
-  transform: scale(1.1);
-}
-.tool-ghost {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  display: none;
-} */
-
-
 #axe {
 }
 
@@ -150,24 +133,24 @@ aside {
 }
 
 .stacks {
-    position: fixed;
-    top: 300px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  position: fixed;
+  top: 300px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .material {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s;
-    background-size: cover;
-    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+  background-size: cover;
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
 }
 
 .numbers {
@@ -176,17 +159,13 @@ aside {
   left: 50px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
   color: rgb(40, 40, 40);
   font-size: 28px;
 }
 
 h3 {
-  
-}
-
-.number-log-oak {
-
+  margin: 0px;
 }
 
 #oak-leaves {
@@ -203,4 +182,3 @@ h3 {
 
 #stone {
 }
-
