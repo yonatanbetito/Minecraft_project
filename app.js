@@ -4,12 +4,7 @@ const contiener = document.getElementById("contiener"); // contiener = grid
 const cells = document.getElementsByClassName("cell"); // all the cell in the grid
 
 // material
-const materials = document.getElementsByClassName("material");
-const oakleavesId = document.getElementById("oak-leaves"); // leaves of the tree
-const oaklogId = document.getElementById("oak-log"); // root of the tree
-const grassId = document.getElementById("grass");
-const dirtId = document.getElementById("dirt");
-const stoneId = document.getElementById("stone");
+const materials = document.getElementsByClassName("materials");
 
 // tools
 const axe = document.getElementById("axe"); // for oak-log
@@ -19,19 +14,23 @@ const pickaxe = document.getElementById("pickaxe"); // for stone
 
 const aside = document.querySelector("aside");
 
-const tools = document.querySelectorAll(".tool");
-let selectedTool = null;
+const stack = document.querySelector(".stack");
 
+const tools = document.querySelectorAll(".tool");
+
+let mode = null;
+let selectedTool = null;
+let selectedMaterial = null;
 
 const divNumber = document.createElement("div");
 divNumber.classList.add("numbers");
 aside.appendChild(divNumber);
 
-const h3log = document.createElement("h3");
-const h3leaves = document.createElement("h3");
-const h3grass = document.createElement("h3");
-const h3dirt = document.createElement("h3");
-const h3stone = document.createElement("h3");
+const divlog = document.createElement("div");
+const divleaves = document.createElement("div");
+const divgrass = document.createElement("div");
+const divdirt = document.createElement("div");
+const divstone = document.createElement("div");
 // End Element <<<
 
 const stackMaterial = {
@@ -63,52 +62,67 @@ function toolType(tool) {
   contiener.style.cursor = `url('/utils/cursor/${tool.id}.png') 16 16, auto`;
 }
 
-function selecetTool() {
+function selectTool() {
   for (let i = 0; i < tools.length; i++) {
     tools[i].addEventListener("click", function () {
       toolType(tools[i]);
       selectedTool = tools[i].id;
+      selectedMaterial = null;
+      mode = "tool";
     });
   }
 }
 
-selecetTool();
+selectTool();
+
+function addMaterialToStack(materialId) {
+  let divMaterial = stack.querySelector(`.${materialId}Stack`);
+  console.log(divMaterial);
+  
+  if (!divMaterial) {
+    divMaterial = document.createElement("div");
+    divMaterial.classList.add("materials", materialId + "Stack");
+    divMaterial.id = materialId;
+    divMaterial.style.backgroundImage = `url('/utils/${materialId}.webp')`;
+    console.log(divMaterial);
+    stack.appendChild(divMaterial);
+  }
+
+  stackMaterial[materialId]++;
+
+  checkStackAndActivate();
+}
 
 function toolsValidation(cell, tool) {
-  if (tool === "axe" && cell.classList.contains("oak-log")) {
-    cell.classList.remove("oak-log");
-    oaklogId.style.backgroundImage = "url(/utils/oak-log.webp)";
-    stackMaterial.oaklog++;
-    h3log.textContent = stackMaterial.oaklog;
-    divNumber.appendChild(h3log);
+  if (tool === "axe" && cell.classList.contains("oaklog")) {
+    addMaterialToStack("oaklog");
+    cell.classList.remove("oaklog");
+    divlog.textContent = stackMaterial.oaklog;
+    divNumber.appendChild(divlog);
   }
-  if (tool === "shears" && cell.classList.contains("oak-leaves")) {
-    cell.classList.remove("oak-leaves");
-    oakleavesId.style.backgroundImage = "url(/utils/oak-leaves.webp)";
-    stackMaterial.oakleaves++;
-    h3leaves.textContent = stackMaterial.oakleaves;
-    divNumber.appendChild(h3leaves);
+  if (tool === "shears" && cell.classList.contains("oakleaves")) {
+    addMaterialToStack("oakleaves");
+    cell.classList.remove("oakleaves");
+    divleaves.textContent = stackMaterial.oakleaves;
+    divNumber.appendChild(divleaves);
   }
   if (tool === "shovel" && cell.classList.contains("grass")) {
+    addMaterialToStack("grass");
     cell.classList.remove("grass");
-    grassId.style.backgroundImage = "url(/utils/grass.webp)";
-    stackMaterial.grass++;
-    h3grass.textContent = stackMaterial.grass;
-    divNumber.appendChild(h3grass);
+    divgrass.textContent = stackMaterial.grass;
+    divNumber.appendChild(divgrass);
   }
   if (tool === "shovel" && cell.classList.contains("dirt")) {
+    addMaterialToStack("dirt");
     cell.classList.remove("dirt");
-    dirtId.style.backgroundImage = "url(/utils/dirt.webp)";
-    stackMaterial.dirt++;
-    h3dirt.textContent = stackMaterial.dirt;
-    divNumber.appendChild(h3dirt);
+    divdirt.textContent = stackMaterial.dirt;
+    divNumber.appendChild(divdirt);
   }
   if (tool === "pickaxe" && cell.classList.contains("stone")) {
+    addMaterialToStack("stone");
     cell.classList.remove("stone");
-    stoneId.style.backgroundImage = "url(/utils/stone.webp)";
-    stackMaterial.stone++;
-    h3stone.textContent = stackMaterial.stone;
-    divNumber.appendChild(h3stone);
+    divstone.textContent = stackMaterial.stone;
+    divNumber.appendChild(divstone);
   }
 }
 
@@ -123,6 +137,8 @@ function removeMaterial() {
 removeMaterial();
 
 function materialsValidation(material) {
+  console.log(material)
+  console.log(material.id)
   contiener.style.cursor = `url('/utils/cursor/${material.id}.jpg') 16 16, auto`;
 }
 
@@ -130,23 +146,39 @@ function createMaterial(material) {
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", () => {
       if (stackMaterial[material.id] > 0) {
-        cells[i].classList.add(`${material.id}`);
+        cells[i].classList.add(material.id);
         stackMaterial[material.id]--;
+        
+        const counter = document.getElementById(`${material.id}`);
+        if (counter) {
+          counter.textContent = stackMaterial[material.id];
+        }
       }
     });
   }
 }
 
-function selecetMaterial() {
+function selectMaterial() {
   for (let i = 0; i < materials.length; i++) {
-    materials[i].addEventListener("click", function () {
+    materials[i].addEventListener("click", (e) => {
       materialsValidation(materials[i]);
       createMaterial(materials[i]);
+      selectedTool = null;
+      mode = "material";
     });
   }
 }
 
-selecetMaterial();
+function checkStackAndActivate() {
+  for (let key in stackMaterial) {
+    if (stackMaterial[key] > 0) {
+      selectMaterial();
+      break;
+    }
+  }
+}
+// selectMaterial();
+
 
 const numbers = [];
 
