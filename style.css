@@ -1,4 +1,9 @@
+@font-face {
+  font-family: "Minecraftia-Regular";
+  src: url("/utils/MinecraftRegular-Bmg3.otf") format("opentype");
+}
 body {
+  font-family: Minecraftia-Regular;
   margin: 0;
 }
 
@@ -18,10 +23,12 @@ header {
   color: white;
   background-color: #a0a0a0;
   border: 2px solid #707070;
-  padding: 30px 150px 30px 150px;
+  padding: 20px 110px 20px 110px;
   border-radius: 7px;
   text-decoration: none;
   font: inherit;
+  font-size: 30px;
+  font-family: Minecraftia-Regular;
 }
 .Start:hover {
   background-color: #b0b0b0;
@@ -31,10 +38,13 @@ header {
   color: white;
   background-color: #a0a0a0;
   border: 2px solid #707070;
-  padding: 30px 150px 30px 150px;
+  padding: 20px 110px 20px 110px;
   border-radius: 7px;
+  margin-bottom: 100px;
+  margin-top: 30px;
   text-decoration: none;
   font: inherit;
+  font-size: 30px;
 }
 .Lode:hover {
   background-color: #b0b0b0;
@@ -95,6 +105,7 @@ header {
   min-width: 150px;
   width: 900px;
   height: 450px;
+  margin-bottom: -100px;
 }
 
 .button button {
