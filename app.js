@@ -97,8 +97,6 @@ for (let index = 0; index < 100 * 30; index++) {
   contiener.appendChild(div);
 }
 
-const listId = [];
-const leastIndex = [];
 const stackMaterial = {
   oaklog: 0,
   oakleaves: 0,
@@ -158,6 +156,9 @@ removeMaterial();
 // }
 
 const numbers = [];
+const listId = [];
+const leastIndex = [];
+
 function addId(startBotonPart, endBotonPart, startTopPart, endTopPart) {
   for (let i = startBotonPart; i <= endBotonPart; i++) {
     listId.push(i);
@@ -166,37 +167,48 @@ function addId(startBotonPart, endBotonPart, startTopPart, endTopPart) {
     listId.push(j);
   }
 }
-
-for (let i = 0; i < 4; i++) {
-  const num = Math.floor(Math.random() * (1094 - 1006 + 1)) + 1006;
-  numbers.push(num);
-  let idTrunk = 0;
-  const higtThree = 3 + Math.floor(Math.random() * 2);
-  const rout = [numbers[i]];
-  for (idTrunk = 0; idTrunk < higtThree; idTrunk++) {
-    const IndexTrunk = rout[idTrunk] - 100;
-    rout.push(IndexTrunk);
-    const pars = String(IndexTrunk);
-    let trunk = document.getElementById(pars);
-    trunk.classList.add("trunk");
+function craetTrunk(numThree) {
+  numThree = 6
+  for (let i = 0; i < numThree; i++) {
+    const num = Math.floor(Math.random() * (1094 - 1006 + 1)) + 1006;
+    numbers.push(num);
+    let idTrunk = 0;
+    const higtThree = 3 + Math.floor(Math.random() * 2);
+    const rout = [numbers[i]];
+    for (idTrunk = 0; idTrunk < higtThree; idTrunk++) {
+      const IndexTrunk = rout[idTrunk] - 100;
+      rout.push(IndexTrunk);
+      const pars = String(IndexTrunk);
+      let trunk = document.getElementById(pars);
+      trunk.classList.add("trunk");
+    }
+    leastIndex.push(rout[idTrunk]);
   }
-  leastIndex.push(rout[idTrunk]);
+}
 
+function creatLeaves(numLeaves) {
+  numLeaves = 3
   for (let idxSell = 0; idxSell < leastIndex.length; idxSell++) {
-    let start = leastIndex[idxSell] - 103;
-    let end = leastIndex[idxSell] - 97;
+    let startThreeLeves = leastIndex[idxSell] - 103;
+    let endThreeLeves = leastIndex[idxSell] - 97;
 
-    for (let level = 0; level < 3; level++) {
-      const nextStart = start - 100;
-      const nextEnd = end - 100;
-      addId(start, end, nextStart, nextEnd);
-      start = nextStart - 99;
-      end = nextEnd - 101;
+    for (let level = 0; level < numLeaves; level++) {
+      const nextStartThreeLeves = startThreeLeves - 100;
+      const nextEndThreeLeves = endThreeLeves - 100;
+      addId(startThreeLeves, endThreeLeves, nextStartThreeLeves, nextEndThreeLeves);
+      startThreeLeves = nextStartThreeLeves - 99;
+      endThreeLeves = nextEndThreeLeves - 101;
     }
   }
 }
-for (let idSell = 0; idSell <= listId.length; idSell++) {
-  const parsLeaves = String(listId[idSell]);
-  let leaves = document.getElementById(parsLeaves);
-  leaves.classList.add("leaves");
+
+function insertIdThree() {
+  for (let idSell = 0; idSell <= listId.length; idSell++) {
+    const parsLeaves = String(listId[idSell]);
+    let leaves = document.getElementById(parsLeaves);
+    leaves.classList.add("leaves");
+  }
 }
+craetTrunk()
+creatLeaves()
+insertIdThree()
