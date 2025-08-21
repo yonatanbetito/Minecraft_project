@@ -72,7 +72,6 @@ aside {
 }
 
 #oak-leaves {
-    background-color: bisque;
 }
 
 #oak-log {
@@ -85,4 +84,13 @@ aside {
 }
 
 #stone {
+}
+
+.trunk{
+    background-image: url(/utils/oak-log.webp);
+    background-size: cover;
+}
+.leaves{
+    background-image: url("/utils/oak-leaves.webp");
+   background-size: cover;
 }
