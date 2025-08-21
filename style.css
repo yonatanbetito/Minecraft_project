@@ -3,7 +3,7 @@ body {
 }
 
 header {
-
+  width: 4800px;
 }
 
 #homeP {
@@ -14,8 +14,67 @@ header {
   align-items: center;
   justify-content: center;
 }
+.Start {
+  color: white;
+  background-color: #a0a0a0;
+  border: 2px solid #707070;
+  padding: 30px 150px 30px 150px;
+  border-radius: 7px;
+  text-decoration: none;
+  font: inherit;
+}
+.Start:hover {
+  background-color: #b0b0b0;
+  color: white;
+}
+.Lode {
+  color: white;
+  background-color: #a0a0a0;
+  border: 2px solid #707070;
+  padding: 30px 150px 30px 150px;
+  border-radius: 7px;
+  text-decoration: none;
+  font: inherit;
+}
+.Lode:hover {
+  background-color: #b0b0b0;
+  color: white;
+}
+.menu {
+  color: white;
+  background-color: #a0a0a0;
+  border: 2px solid #707070;
+  position: fixed;
+  top: 10px;
+  left: 30px;
+  padding: 10px;
+  border-radius: 7px;
+  text-decoration: none;
+  font: inherit;
+}
+.menu:hover {
+  background-color: #b0b0b0;
+  color: white;
+}
+.newwolrd {
+  color: white;
+  background-color: #a0a0a0;
+  border: 2px solid #707070;
+  position: fixed;
+  top: 10px;
+  left: 100px;
+  padding: 10px;
+  border-radius: 7px;
+  text-decoration: none;
+  font: inherit;
+}
+.newwolrd:hover {
+  background-color: #b0b0b0;
+  color: white;
+}
 
 #button {
+  width: 99.59%;
   background-color: #87ceeb;
   padding: 10px;
 }
@@ -141,6 +200,7 @@ aside {
   gap: 20px;
 }
 
+
 .materials {
   width: 50px;
   height: 50px;
@@ -164,10 +224,6 @@ aside {
   font-size: 28px;
 }
 
-h3 {
-  margin: 0px;
-}
-
 #oak-leaves {
 }
 
@@ -183,8 +239,11 @@ h3 {
 #stone {
 }
 
-.grassStack {
-  /* height: 48px;
-  width: 48px;
-  background-size: cover; */
+.oaklog {
+  background-image: url(/utils/oaklog.webp);
+  background-size: cover;
+}
+.oakleaves {
+  background-image: url(/utils/oakleaves.webp);
+  background-size: cover;
 }

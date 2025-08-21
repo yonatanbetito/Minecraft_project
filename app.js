@@ -1,7 +1,7 @@
 // >>> Elemntes
 const contiener = document.getElementById("contiener"); // contiener = grid
-
 const cells = document.getElementsByClassName("cell"); // all the cell in the grid
+
 
 // material
 const materials = document.getElementsByClassName("materials");
@@ -31,7 +31,6 @@ const divleaves = document.createElement("div");
 const divgrass = document.createElement("div");
 const divdirt = document.createElement("div");
 const divstone = document.createElement("div");
-// End Element <<<
 
 const stackMaterial = {
   oaklog: 0,
@@ -40,8 +39,9 @@ const stackMaterial = {
   dirt: 0,
   stone: 0,
 };
+// End Element <<<
 
-let count = 0;
+
 for (let index = 0; index < 100 * 30; index++) {
   const div = document.createElement("div");
   div.classList.add("cell");
@@ -87,14 +87,14 @@ function addMaterialToStack(materialId) {
     console.log(divMaterial);
     stack.appendChild(divMaterial);
   }
-
+  
   stackMaterial[materialId]++;
-
+  
   checkStackAndActivate();
 }
 
-function toolsValidation(cell, tool) {
-  if (tool === "axe" && cell.classList.contains("oaklog")) {
+function toolValidation(cell, tool) {
+  if (tool === "axe") {
     addMaterialToStack("oaklog");
     cell.classList.remove("oaklog");
     divlog.textContent = stackMaterial.oaklog;
@@ -129,7 +129,7 @@ function toolsValidation(cell, tool) {
 function removeMaterial() {
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function () {
-      toolsValidation(cells[i], selectedTool);
+      toolValidation(cells[i], selectedTool);
     });
   }
 }
@@ -137,8 +137,6 @@ function removeMaterial() {
 removeMaterial();
 
 function materialsValidation(material) {
-  console.log(material)
-  console.log(material.id)
   contiener.style.cursor = `url('/utils/cursor/${material.id}.jpg') 16 16, auto`;
 }
 
@@ -177,12 +175,69 @@ function checkStackAndActivate() {
     }
   }
 }
-// selectMaterial();
-
 
 const numbers = [];
+const listId = [];
+const leastIndex = [];
 
 for (let i = 0; i < 4; i++) {
   const num = Math.floor(Math.random() * (1099 - 1006 + 1)) + 1006;
   numbers.push(num);
 }
+
+function addId(startBotonPart, endBotonPart, startTopPart, endTopPart) {
+  for (let i = startBotonPart; i <= endBotonPart; i++) {
+    listId.push(i);
+  }
+  for (let j = startTopPart; j <= endTopPart; j++) {
+    listId.push(j);
+  }
+}
+function craetTrunk(numThree) {
+  numThree = 6
+  for (let i = 0; i < numThree; i++) {
+    const num = Math.floor(Math.random() * (1094 - 1006 + 1)) + 1006;
+    numbers.push(num);
+    let idTrunk = 0;
+    const higtThree = 3 + Math.floor(Math.random() * 2);
+    const rout = [numbers[i]];
+    for (idTrunk = 0; idTrunk < higtThree; idTrunk++) {
+      const IndexTrunk = rout[idTrunk] - 100;
+      rout.push(IndexTrunk);
+      const pars = String(IndexTrunk);
+      let trunk = document.getElementById(pars);
+      trunk.classList.add("oaklog");
+    }
+    leastIndex.push(rout[idTrunk]);
+  }
+}
+
+function creatLeaves(numLeaves) {
+  numLeaves = 3
+  for (let idxSell = 0; idxSell < leastIndex.length; idxSell++) {
+    let startThreeLeves = leastIndex[idxSell] - 103;
+    let endThreeLeves = leastIndex[idxSell] - 97;
+
+    for (let level = 0; level < numLeaves; level++) {
+      const nextStartThreeLeves = startThreeLeves - 100;
+      const nextEndThreeLeves = endThreeLeves - 100;
+      addId(startThreeLeves, endThreeLeves, nextStartThreeLeves, nextEndThreeLeves);
+      startThreeLeves = nextStartThreeLeves - 99;
+      endThreeLeves = nextEndThreeLeves - 101;
+    }
+  }
+}
+
+function insertIdThree() {
+  for (let idSell = 0; idSell <= listId.length; idSell++) {
+    const parsLeaves = String(listId[idSell]);
+    let leaves = document.getElementById(parsLeaves);
+    console.log(leaves);
+    if (leaves) {
+        leaves.classList.add("oakleaves");
+    }
+  }
+}
+craetTrunk()
+creatLeaves()
+insertIdThree()
