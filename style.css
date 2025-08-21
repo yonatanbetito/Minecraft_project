@@ -189,9 +189,8 @@ aside {
   height: 50px;
   background-size: contain;
   background-repeat: no-repeat;
-  pointer-events: none; /* לא חוסם לחיצות */
+  pointer-events: none;
   transform: translate(-50%, -50%);
-  z-index: 1000;
   display: none;
 }
 

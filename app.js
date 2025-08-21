@@ -74,7 +74,13 @@ function initTools() {
 // קריאה להתחלה
 initTools();
 
+
+
+   
+
+
 let count = 0;
+
 for (let index = 0; index < 100 * 30; index++) {
   const div = document.createElement("div");
   div.classList.add("cell");
