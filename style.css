@@ -50,9 +50,7 @@ header {
 }
 
 .cell{
-
-    background-color: #87CEEB
-
+  background-color: #87CEEB
 }
 
 button:hover {
@@ -122,7 +120,7 @@ aside {
 }
 
 /* כשהכלי נבחר */
-.tool.active {
+/* .tool.active {
   border-color: yellow;
   transform: scale(1.1);
 }
@@ -132,11 +130,11 @@ aside {
   height: 50px;
   background-size: contain;
   background-repeat: no-repeat;
-  pointer-events: none; /* לא חוסם לחיצות */
+  pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 1000;
   display: none;
-}
+} */
 
 
 #axe {
@@ -172,6 +170,25 @@ aside {
     box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
 }
 
+.numbers {
+  position: fixed;
+  top: 300px;
+  left: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: rgb(40, 40, 40);
+  font-size: 28px;
+}
+
+h3 {
+  
+}
+
+.number-log-oak {
+
+}
+
 #oak-leaves {
 }
 
@@ -186,3 +203,4 @@ aside {
 
 #stone {
 }
+

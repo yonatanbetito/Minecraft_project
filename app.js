@@ -1,87 +1,103 @@
-
-
 // >>> Elemntes
 const contiener = document.getElementById("contiener"); // contiener = grid
 
 const cells = document.getElementsByClassName("cell"); // all the cell in the grid
 
 // material
-const oakleaves = document.getElementById("oak-leaves"); // leaves of the tree
-const oaklog = document.getElementById("oak-log"); // root of the tree
-const grass = document.getElementById("grass");
-const dirt = document.getElementById("dirt");
-const stone = document.getElementById("stone");
+const materials = document.getElementsByClassName("material");
+const oakleavesId = document.getElementById("oak-leaves"); // leaves of the tree
+const oaklogId = document.getElementById("oak-log"); // root of the tree
+const grassId = document.getElementById("grass");
+const dirtId = document.getElementById("dirt");
+const stoneId = document.getElementById("stone");
 
 // tools
 const axe = document.getElementById("axe"); // for oak-log
 const shears = document.getElementById("shears"); // for oak-leaves
 const shovel = document.getElementById("shovel"); // for grass & dirt
 const pickaxe = document.getElementById("pickaxe"); // for stone
+
+const aside = document.querySelector("aside");
 // End Element <<<
 
 
+// // בחירת כל הכלים
+// const tools = document.querySelectorAll(".tool");
+// let selectedTool = null;
+// let ghost = null;
 
-// בחירת כל הכלים
+// // יצירת ghost שמלווה את העכבר
+// function createGhost() {
+//   const div = document.createElement("div");
+//   div.classList.add("tool-ghost");
+//   document.body.appendChild(div);
+//   return div;
+// }
+
+// // בחירת כלי
+// function selectTool(tool) {
+//   selectedTool = tool.id;
+//   console.log("selectedTool:",selectedTool)
+//   tools.forEach(t => t.classList.remove("active")); 
+//   tool.classList.add("active");// הדגשת הכלי שנבחר
+
+//   const imgSrc = tool.querySelector("img").src;
+//   document.body.style.cursor = `url(${imgSrc}) , auto`;
+
+//   ghost.style.backgroundImage = `url(${imgSrc})`;
+//   ghost.style.display = "block";
+// }
+
+// // הזזת ה-ghost עם העכבר
+// function moveGhost(e) {
+//   if (selectedTool) {
+//     ghost.style.left = e.pageX + "px";
+//     ghost.style.top = e.pageY + "px";
+//   }
+// }
+
+
+// // מאזינים לכלים
+// function setupToolListeners() {
+//   tools.forEach(tool => {
+//     tool.addEventListener("click", () => selectTool(tool));
+//   });
+// }
+
+// // מאזין להזזת עכבר
+// function setupMouseMove() {
+//   document.addEventListener("mousemove", moveGhost);
+  
+// }
+
+
+// // התחלת הפונקציות
+// function initTools() {
+//   ghost = createGhost();
+//   setupToolListeners();
+//   setupMouseMove();
+// }
+
+// // קריאה להתחלה
+// initTools();
+
 const tools = document.querySelectorAll(".tool");
 let selectedTool = null;
-let ghost = null;
 
-// יצירת ghost שמלווה את העכבר
-function createGhost() {
-  const div = document.createElement("div");
-  div.classList.add("tool-ghost");
-  document.body.appendChild(div);
-  return div;
+function toolType(tool) {
+  contiener.style.cursor = `url('/utils/cursor/${tool.id}.png') 16 16, auto`;
 }
 
-// בחירת כלי
-function selectTool(tool) {
-  selectedTool = tool.id;
-  console.log("selectedTool:",selectedTool)
-  tools.forEach(t => t.classList.remove("active")); 
-  tool.classList.add("active");// הדגשת הכלי שנבחר
-
-  const imgSrc = tool.querySelector("img").src;
-  document.body.style.cursor = `url(${imgSrc}) , auto`;
-
-  ghost.style.backgroundImage = `url(${imgSrc})`;
-  ghost.style.display = "block";
-}
-
-// הזזת ה-ghost עם העכבר
-function moveGhost(e) {
-  if (selectedTool) {
-    ghost.style.left = e.pageX + "px";
-    ghost.style.top = e.pageY + "px";
+function selecetTool() {
+  for (let i =0; i < tools.length; i++) {
+    tools[i].addEventListener("click", function () {
+      toolType(tools[i]);
+      selectedTool = tools[i].id;
+    });
   }
 }
 
-
-// מאזינים לכלים
-function setupToolListeners() {
-  tools.forEach(tool => {
-    tool.addEventListener("click", () => selectTool(tool));
-  });
-}
-
-// מאזין להזזת עכבר
-function setupMouseMove() {
-  document.addEventListener("mousemove", moveGhost);
-  
-}
-
-
-// התחלת הפונקציות
-function initTools() {
-  ghost = createGhost();
-  setupToolListeners();
-  setupMouseMove();
-}
-
-// קריאה להתחלה
-initTools();
-
-
+selecetTool();
 
 let count = 0
 for (let index = 0; index < 100 * 30; index++) {
@@ -97,8 +113,7 @@ for (let index = 0; index < 100 * 30; index++) {
   } else if (index >= 100 * 28) {
     div.classList.add("bedrock");
   }
-  contiener.appendChild(div)
-  
+  contiener.appendChild(div);
 }
 
 const stackMaterial = {
@@ -109,56 +124,90 @@ const stackMaterial = {
   stone: 0
 }
 
-function toolValidation(cell, tool) {
+const divNumber = document.createElement("div");
+divNumber.classList.add("numbers");
+aside.appendChild(divNumber);
+
+const h3log = document.createElement("h3");
+const h3leaves = document.createElement("h3");
+const h3grass = document.createElement("h3");
+const h3dirt = document.createElement("h3");
+const h3stone = document.createElement("h3");
+
+function toolsValidation(cell, tool) {
   if (tool === "axe" && cell.classList.contains("oak-log")) {
     cell.classList.remove("oak-log");
+    oaklogId.style.backgroundImage = "url(/utils/oak-log.webp)";
     stackMaterial.oaklog ++;
-    oaklog.style.backgroundImage = "url(/utils/oak-log.webp)";
+    h3log.textContent = stackMaterial.oaklog;
+    divNumber.appendChild(h3log);
   }
   if (tool === "shears" && cell.classList.contains("oak-leaves")) {
     cell.classList.remove("oak-leaves");
+    oakleavesId.style.backgroundImage = "url(/utils/oak-leaves.webp)";
     stackMaterial.oakleaves++;
-    grass.style.backgroundImage = "url(/utils/oak-leaves.webp)";
+    h3leaves.textContent = stackMaterial.oakleaves;
+    divNumber.appendChild(h3leaves);
   }
   if (tool === "shovel" && cell.classList.contains("grass")) {
     cell.classList.remove("grass");
+    grassId.style.backgroundImage = "url(/utils/grass.webp)";
     stackMaterial.grass++;
-    grass.style.backgroundImage = "url(/utils/grass.webp)";
+    h3grass.textContent = stackMaterial.grass;
+    divNumber.appendChild(h3grass);
   }
   if (tool === "shovel" && cell.classList.contains("dirt")) {
     cell.classList.remove("dirt");
+    dirtId.style.backgroundImage = "url(/utils/dirt.webp)";
     stackMaterial.dirt++;
-    dirt.style.backgroundImage = "url(/utils/dirt.webp)";
+    h3dirt.textContent = stackMaterial.dirt;
+    divNumber.appendChild(h3dirt);
   }
   if (tool === "pickaxe" && cell.classList.contains("stone")) {
     cell.classList.remove("stone");
+    stoneId.style.backgroundImage = "url(/utils/stone.webp)";
     stackMaterial.stone++;
-    stone.style.backgroundImage = "url(/utils/stone.webp)";
+    h3stone.textContent = stackMaterial.stone;
+    divNumber.appendChild(h3stone);
   }
 }
 
 function removeMaterial() {
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function () {
-      toolValidation(cells[i], selectedTool);
+      toolsValidation(cells[i], selectedTool);
     });
   }
 } 
 
 removeMaterial();
 
-// function selecetMaterial(cell) {
-//   const 
-// }
+function materialsValidation(material) {
+  contiener.style.cursor = `url('/utils/cursor/${material.id}.jpg') 16 16, auto`;
+}
 
+function createMaterial(material) {
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].addEventListener("click", () => {
+      if (stackMaterial[material.id] > 0) {
+        cells[i].classList.add(`${material.id}`);
+        stackMaterial[material.id]--;
+      }
+    })
+  }
+}
 
-// function createMaterial() {
-//   for (let i = 0; i < cells.length; i++) {
-//     cells[i].addEventListener("click", (element) => {
-//       element.classList.add("")
-//     })
-//   }
-// }
+function selecetMaterial() {
+  for (let i =0; i < materials.length; i++) {
+    materials[i].addEventListener("click", function () {
+      materialsValidation(materials[i]);
+      createMaterial(materials[i]);
+    });
+  }
+}
+
+selecetMaterial();
+
 
 
 const numbers = [];
