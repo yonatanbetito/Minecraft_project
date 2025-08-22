@@ -77,14 +77,12 @@ selectTool();
 
 function addMaterialToStack(materialId) {
   let divMaterial = stack.querySelector(`.${materialId}Stack`);
-  console.log(divMaterial);
   
   if (!divMaterial) {
     divMaterial = document.createElement("div");
     divMaterial.classList.add("materials", materialId + "Stack");
     divMaterial.id = materialId;
     divMaterial.style.backgroundImage = `url('/utils/${materialId}.webp')`;
-    console.log(divMaterial);
     stack.appendChild(divMaterial);
   }
   
@@ -97,30 +95,35 @@ function toolValidation(cell, tool) {
   if (tool === "axe") {
     addMaterialToStack("oaklog");
     cell.classList.remove("oaklog");
+    stackMaterial.oaklog ++;
     divlog.textContent = stackMaterial.oaklog;
     divNumber.appendChild(divlog);
   }
   if (tool === "shears" && cell.classList.contains("oakleaves")) {
     addMaterialToStack("oakleaves");
     cell.classList.remove("oakleaves");
+    stackMaterial.oakleaves ++;
     divleaves.textContent = stackMaterial.oakleaves;
     divNumber.appendChild(divleaves);
   }
   if (tool === "shovel" && cell.classList.contains("grass")) {
     addMaterialToStack("grass");
     cell.classList.remove("grass");
+    stackMaterial.grass ++;
     divgrass.textContent = stackMaterial.grass;
     divNumber.appendChild(divgrass);
   }
   if (tool === "shovel" && cell.classList.contains("dirt")) {
     addMaterialToStack("dirt");
     cell.classList.remove("dirt");
+    stackMaterial.dirt ++;
     divdirt.textContent = stackMaterial.dirt;
     divNumber.appendChild(divdirt);
   }
   if (tool === "pickaxe" && cell.classList.contains("stone")) {
     addMaterialToStack("stone");
     cell.classList.remove("stone");
+    stackMaterial.stone ++;
     divstone.textContent = stackMaterial.stone;
     divNumber.appendChild(divstone);
   }
@@ -137,7 +140,7 @@ function removeMaterial() {
 removeMaterial();
 
 function materialsValidation(material) {
-  contiener.style.cursor = `url('/utils/cursor/${material.id}.jpg') 16 16, auto`;
+  contiener.style.cursor = `url('/utils/cursor/${material.id}.png') 16 16, auto`;
 }
 
 function createMaterial(material) {
