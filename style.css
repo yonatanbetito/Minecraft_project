@@ -1,9 +1,10 @@
 @font-face {
-  font-family: "Minecraftia-Regular";
-  src: url("/utils/MinecraftRegular-Bmg3.otf") format("opentype");
+  font-family: "minecraft";
+  src: url(./utils/MinecraftRegular-Bmg3.otf) format("opentype");
 }
+
 body {
-  font-family: Minecraftia-Regular;
+  font-family: "minecraft", sans-serif;
   margin: 0;
 }
 
@@ -15,45 +16,79 @@ header {
   height: 100vh;
   background-image: url(/utils/minecraft-background.jpg);
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-position: center;
+  justify-items: center;
 }
+
+#homebuttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+#homebuttons > div {
+  align-items: center;
+  justify-items: center;
+}
+
+#buttons {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  gap: 30px;
+}
+
 .Start {
   color: white;
   background-color: #a0a0a0;
   border: 2px solid #707070;
-  padding: 20px 110px 20px 110px;
+  padding: 1.5vw 9vw;
+  text-align: center;
   border-radius: 7px;
+  box-shadow: 0px 5px 0px 0px #707070;
   text-decoration: none;
-  font: inherit;
-  font-size: 30px;
-  font-family: Minecraftia-Regular;
 }
+
 .Start:hover {
+  border: 2px solid #323232;
+  box-shadow: 0px 5px 0px 0px #323232;
   background-color: #b0b0b0;
   color: white;
 }
+
 .Lode {
   color: white;
   background-color: #a0a0a0;
   border: 2px solid #707070;
-  padding: 20px 110px 20px 110px;
+  padding: 1.5vw 9vw;
   border-radius: 7px;
-  margin-bottom: 100px;
-  margin-top: 30px;
+  box-shadow: 0px 5px 0px 0px #707070;
   text-decoration: none;
-  font: inherit;
-  font-size: 30px;
 }
+
 .Lode:hover {
+  border: 2px solid #323232;
+  box-shadow: 0px 5px 0px 0px #323232;
   background-color: #b0b0b0;
   color: white;
 }
+
+#text {
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  margin: 50px 20px 20px 20px;
+  text-shadow: -2px -2px 0 #323232, 2px -2px 0 #323232, -2px 2px 0 #323232,
+    2px 2px 0 #323232;
+}
+
 .menu {
   color: white;
   background-color: #a0a0a0;
   border: 2px solid #707070;
+  box-shadow: 0px 5px 0px 0px #707070;
   position: fixed;
   top: 10px;
   left: 30px;
@@ -62,14 +97,19 @@ header {
   text-decoration: none;
   font: inherit;
 }
+
 .menu:hover {
   background-color: #b0b0b0;
+  border: 2px solid #323232;
+  box-shadow: 0px 5px 0px 0px #323232;
   color: white;
 }
+
 .newwolrd {
   color: white;
   background-color: #a0a0a0;
   border: 2px solid #707070;
+  box-shadow: 0px 5px 0px 0px #707070;
   position: fixed;
   top: 10px;
   left: 100px;
@@ -78,7 +118,10 @@ header {
   text-decoration: none;
   font: inherit;
 }
+
 .newwolrd:hover {
+  border: 2px solid #323232;
+  box-shadow: 0px 5px 0px 0px #323232;
   background-color: #b0b0b0;
   color: white;
 }
@@ -88,24 +131,16 @@ header {
   background-color: #87ceeb;
   padding: 10px;
 }
-#homebuttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 50px;
-}
+
 .homebutton {
   font-size: xx-large;
   min-width: 350px;
   height: 150px;
 }
+
 #logo {
-  min-width: 150px;
-  width: 900px;
-  height: 450px;
-  margin-bottom: -100px;
+  margin-top: 20px;
+  width: 60vw;
 }
 
 .button button {
@@ -129,9 +164,11 @@ button:hover {
   background-color: #b0b0b0;
   color: white;
 }
+
 .cell {
   background-color: #87ceeb;
 }
+
 .cell:hover {
   border: 1px solid black;
 }
@@ -140,14 +177,17 @@ button:hover {
   background-image: url(/utils/grass.webp);
   background-size: cover;
 }
+
 .dirt {
   background-image: url(/utils/dirt.webp);
   background-size: cover;
 }
+
 .stone {
   background-image: url(/utils/stone.webp);
   background-size: cover;
 }
+
 .bedrock {
   background-image: url(/utils/bedrock.webp);
   background-size: cover;
@@ -159,9 +199,6 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, 48px);
   grid-template-rows: repeat(auto-fill, 48px);
-}
-
-aside {
 }
 
 .tools {
@@ -184,22 +221,14 @@ aside {
   transition: transform 0.2s, border-color 0.2s;
 }
 
+.tool:hover {
+  transform: scale(1.2);
+}
+
 .tool img {
   width: 80%;
   height: 80%;
   object-fit: contain;
-}
-
-#axe {
-}
-
-#pickaxe {
-}
-
-#shovel {
-}
-
-#shers {
 }
 
 .stack {
@@ -211,7 +240,6 @@ aside {
   gap: 20px;
 }
 
-
 .materials {
   width: 50px;
   height: 50px;
@@ -221,33 +249,23 @@ aside {
   cursor: pointer;
   transition: transform 0.2s, border-color 0.2s;
   background-size: cover;
-  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  border: 2px solid #323232;
+}
+
+.materials:hover {
+  transform: scale(1.2);
 }
 
 .numbers {
   position: fixed;
-  top: 324px;
-  left: 70px;
+  top: 325px;
+  left: 80px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 48px;
   color: rgb(40, 40, 40);
   font-size: 28px;
-}
-
-#oak-leaves {
-}
-
-#oak-log {
-}
-
-#grass {
-}
-
-#dirt {
-}
-
-#stone {
 }
 
 .oaklog {
